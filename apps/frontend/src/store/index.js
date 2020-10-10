@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {UserModuleStore} from '@ci-user-module/frontend'
-import {CustomizationStore} from '@ci-custom-module/frontend'
+import {UserModuleStore} from '@dracul/user-frontend'
+import {CustomizationStore} from '@dracul/customize-frontend'
 import BaseModuleStore from '../modules/base/storage/BaseModuleStore'
 
 Vue.use(Vuex)

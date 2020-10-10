@@ -6,8 +6,8 @@ import i18n from './i18n'
 import router from "./router";
 
 import apolloClient from './apollo'
-import {setGraphQlClientToProviders} from '@ci-user-module/frontend'
-import {customizationProvider} from '@ci-custom-module/frontend'
+import {setGraphQlClientToProviders} from '@dracul/user-frontend'
+import {customizationProvider} from '@dracul/customize-frontend'
 setGraphQlClientToProviders(apolloClient)
 customizationProvider.setGqlc(apolloClient)
 

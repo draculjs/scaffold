@@ -4,4 +4,6 @@ type Ping{
 
 type Query {
     ping: Ping
+    pingDelayed: Ping
+    errorDemo: String
 }

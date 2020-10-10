@@ -4,8 +4,8 @@ import merge from 'deepmerge'
 
 import baseMessages from '../modules/base/i18n/messages'
 import {i18nMessages as i18nMessagesCommon} from '@dracul/common-frontend'
-import {i18nMessages as i18nMessagesUser} from '@ci-user-module/frontend'
-import {i18nMessages as i18nMessagesCustom} from '@ci-custom-module/frontend'
+import {i18nMessages as i18nMessagesUser} from '@dracul/user-frontend'
+import {i18nMessages as i18nMessagesCustom} from '@dracul/customize-frontend'
 
 const messages = merge.all([
     baseMessages,

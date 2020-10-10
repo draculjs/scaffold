@@ -1,3 +1,4 @@
+import winston from "winston";
 import {findCustomization,createCustomization} from '@dracul/customize-backend'
 
 export const initCustomization = async function () {
@@ -20,9 +21,9 @@ export const initCustomization = async function () {
             },
             language: 'es'
         })
-        console.log("Customization created: ", customDoc.id)
+        winston.info("Customization created: " + customDoc.id)
     } else {
-        console.log("Customization found: ", customDoc.id)
+        winston.debug("Customization found: " + customDoc.id)
     }
 
 }

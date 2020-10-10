@@ -26,7 +26,6 @@ const initService = async () => {
     await InitService.initOperatorUser()
 
     await initCustomization()
-    console.log("Done")
 }
 
 export {initService}

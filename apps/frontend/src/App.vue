@@ -21,8 +21,8 @@
 
     import Layout from "./layout/Layout";
     import menuConfig from './menu-config'
-    import {DashboardButton, AppBarUserMenu} from '@ci-user-module/frontend'
-    import {LogoToolbar,TitleToolbar} from '@ci-custom-module/frontend'
+    import {DashboardButton, AppBarUserMenu} from '@dracul/user-frontend'
+    import {LogoToolbar,TitleToolbar} from '@dracul/customize-frontend'
 
     export default {
         name: 'App',
