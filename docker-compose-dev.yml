@@ -1,13 +1,13 @@
 version: "3.5"
 
 services:
-  scaffold:
+  draculscaffold:
     image: cincarnato/dracul-scaffold
-    container_name: scaffold
+    container_name: draculscaffold
     volumes:
-      - ./media:/apps/api/dist/media
-      - ./logs:/apps/api/dist/logs
-      - ./.env:/apps/api/dist/.env
+      - ./media:/app/media
+      - ./logs:/app/logs
+      - ./.env.docker:/app/.env
     ports:
       - "80:5000"
     network_mode: host
