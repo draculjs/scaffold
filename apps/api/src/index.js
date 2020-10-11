@@ -77,7 +77,7 @@ initService().then(() => {
 
     app.listen(process.env.APP_PORT, () => {
         DefaultLogger.info(`Server started: ${URL}`)
-        DefaultLogger.info(`Graphql: ${URL}/graphql`)
+        DefaultLogger.info(`Graphql ready: ${URL}/graphql`)
     })
 
 }).catch(err => {
