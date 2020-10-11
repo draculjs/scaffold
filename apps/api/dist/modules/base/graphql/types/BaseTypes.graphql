@@ -1,7 +1,0 @@
-type Ping{
-    status: Boolean
-}
-
-type Query {
-    ping: Ping
-}

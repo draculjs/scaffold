@@ -1,22 +1,28 @@
-FROM node:12.16.1-alpine3.9
+#BULDER
+FROM node:12.16.1-alpine3.9 as builder
 
-RUN apk add bash
-
-RUN npm install pm2 -g
-
-COPY ./apps /apps
+COPY ./apps /workspace
 
 #API
-WORKDIR /apps/api
+WORKDIR /workspace/api
 RUN npm install
 RUN npm run build
 
 #Frontend
-WORKDIR /apps/frontend
+WORKDIR /workspace/frontend
 RUN npm install
 RUN npm run build
 
-#Start
-WORKDIR /apps/api/dist
+#RUNNER
+FROM node:12.16.1-alpine3.9
 
-ENTRYPOINT ["pm2-runtime", "start", "index.js", "--name", "scaffold"]
+RUN apk add bash
+RUN npm install pm2 -g
+
+COPY --from=builder /workspace/api/dist /app
+COPY --from=builder /workspace/frontend/dist /app/web
+
+WORKDIR /app
+RUN npm install --only=production
+
+ENTRYPOINT ["pm2-runtime", "start", "index.js", "--name", "dracul-scaffold"]

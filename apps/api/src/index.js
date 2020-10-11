@@ -10,11 +10,12 @@ import {ApolloServer, GraphQLExtension} from 'apollo-server-express'
 import {resolvers, typeDefs} from './modules-merge'
 import path from 'path'
 import {jwtMiddleware, corsMiddleware, rbacMiddleware, sessionMiddleware} from '@dracul/user-backend'
-
 import {ResponseTimeMiddleware,RequestMiddleware, GqlErrorLog, GqlResponseLog} from '@dracul/logger-backend'
 
 
 const app = express();
+
+
 app.use(RequestMiddleware)
 app.use(ResponseTimeMiddleware)
 
