@@ -15,13 +15,13 @@ import {ResponseTimeMiddleware,RequestMiddleware, GqlErrorLog, GqlResponseLog} f
 
 const app = express();
 
-
+app.use(jwtMiddleware)
 app.use(RequestMiddleware)
 app.use(ResponseTimeMiddleware)
 
 app.use(corsMiddleware)
 app.use(express.json());
-app.use(jwtMiddleware)
+
 app.use(rbacMiddleware)
 
 app.use(sessionMiddleware)
