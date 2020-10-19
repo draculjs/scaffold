@@ -83,7 +83,7 @@ initService().then(() => {
         DefaultLogger.info(`Web Server started: ${URL}`)
         DefaultLogger.info(`Graphql Server ready: ${URL}${apolloServer.graphqlPath}`)
     })
-    server.setTimeout(5000);
+    server.setTimeout(60000);
 
 }).catch(err => {
     DefaultLogger.error(err.message, err)
