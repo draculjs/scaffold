@@ -11,19 +11,22 @@ import {resolvers, typeDefs} from './modules-merge'
 import path from 'path'
 import {jwtMiddleware, corsMiddleware, rbacMiddleware, sessionMiddleware} from '@dracul/user-backend'
 import {ResponseTimeMiddleware,RequestMiddleware, GqlErrorLog, GqlResponseLog} from '@dracul/logger-backend'
-
+import {TimeoutMiddleware} from "./middlewares/TimeoutMiddleware";
 
 const app = express();
 
+
+
+app.use(corsMiddleware)
+app.use(express.json())
 app.use(jwtMiddleware)
+
 app.use(RequestMiddleware)
 app.use(ResponseTimeMiddleware)
 
-app.use(corsMiddleware)
-app.use(express.json());
+//app.use(TimeoutMiddleware)
 
 app.use(rbacMiddleware)
-
 app.use(sessionMiddleware)
 
 
@@ -73,14 +76,16 @@ app.get('/status', function (req, res) {
 //initialize permissions, roles, users, customs, seeds
 initService().then(() => {
 
-    let PORT = process.env.APP_PORT ? process.env.APP_PORT : "5000"
-    let URL = process.env.APP_API_URL ? process.env.APP_API_URL : "http://localhost" + PORT
+    const PORT = process.env.APP_PORT ? process.env.APP_PORT : "5000"
+    const URL = process.env.APP_API_URL ? process.env.APP_API_URL : "http://localhost" + PORT
 
-    app.listen(process.env.APP_PORT, () => {
-        DefaultLogger.info(`Server started: ${URL}`)
-        DefaultLogger.info(`Graphql ready: ${URL}/graphql`)
+    const server = app.listen(PORT, () => {
+        DefaultLogger.info(`Web Server started: ${URL}`)
+        DefaultLogger.info(`Graphql Server ready: ${URL}${apolloServer.graphqlPath}`)
     })
+    server.setTimeout(5000);
 
 }).catch(err => {
     DefaultLogger.error(err.message, err)
 })
+
