@@ -25,11 +25,19 @@ This scaffold depends on dracul framework modules
 - Emails with Nodemailer
 - Logs with Winston
 
-### Installation and usage
+### Installation and Run
 
-- Inside /apps/frontend and execute npm install
-- Inside /apps/api and and execute npm intall
-- Create .env file in frontend and api(exist an example.env)
+- In /apps/frontend and /apps/apiand execute:
+    ```js
+    $ npm install
+    ```
+- Create .env file in frontend and api (exist an example.env)
 - Run project:
-    - Frontend: npm run serve
-    - Api: npm start
+    - Frontend: 
+    ```js
+    $ npm run serve
+    ```
+    - Api: 
+    ```js
+    $ npm start
+    ```
