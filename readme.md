@@ -24,3 +24,20 @@ This scaffold depends on dracul framework modules
 - JWT Auth
 - Emails with Nodemailer
 - Logs with Winston
+
+### Installation and Run
+
+- In /apps/frontend and /apps/apiand execute:
+    ```js
+    $ npm install
+    ```
+- Create .env file in frontend and api (exist an example.env)
+- Run project:
+    - Frontend: 
+    ```js
+    $ npm run serve
+    ```
+    - Api: 
+    ```js
+    $ npm start
+    ```
