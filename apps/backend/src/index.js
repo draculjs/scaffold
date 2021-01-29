@@ -30,24 +30,6 @@ app.use(rbacMiddleware)
 app.use(sessionMiddleware)
 
 
-
-//STATIC FILES
-app.use('/media/avatar', express.static('media/avatar'));
-app.use('/media/logo', express.static('media/logo'));
-app.use('/media/export', express.static('media/export'));
-
-//Web Static Files for Production
-app.use('/', express.static('web', {index: "index.html"}));
-app.get('*', function (request, response) {
-    response.sendFile(path.resolve(__dirname, 'web/index.html'));
-});
-
-//Endpoint for monitoring
-app.get('/status', function (req, res) {
-    res.send("RUNNING")
-})
-
-
 GraphQLExtension.didEncounterErrors
 
 const apolloServer = new ApolloServer({
@@ -74,6 +56,25 @@ const apolloServer = new ApolloServer({
 
 
 apolloServer.applyMiddleware({app})
+
+//STATIC FILES
+app.use('/media/avatar', express.static('media/avatar'));
+app.use('/media/logo', express.static('media/logo'));
+app.use('/media/export', express.static('media/export'));
+
+
+//Endpoint for monitoring
+app.get('/status', function (req, res) {
+    res.send("RUNNING")
+})
+
+//Web Static Files for Production
+app.use('/', express.static('web', {index: "index.html"}));
+app.use(function (request, response) {
+    response.sendFile(path.resolve(__dirname, 'web/index.html'));
+});
+
+
 
 //initialize permissions, roles, users, customs, seeds
 initService().then(() => {
