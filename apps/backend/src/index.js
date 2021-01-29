@@ -70,7 +70,7 @@ app.get('/status', function (req, res) {
 
 //Web Static Files for Production
 app.use('/', express.static('web', {index: "index.html"}));
-app.use(function (request, response) {
+app.use('*',function (request, response) {
     response.sendFile(path.resolve(__dirname, 'web/index.html'));
 });
 
