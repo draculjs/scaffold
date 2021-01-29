@@ -30,6 +30,24 @@ app.use(rbacMiddleware)
 app.use(sessionMiddleware)
 
 
+
+//STATIC FILES
+app.use('/media/avatar', express.static('media/avatar'));
+app.use('/media/logo', express.static('media/logo'));
+app.use('/media/export', express.static('media/export'));
+
+//Web Static Files for Production
+app.use('/', express.static('web', {index: "index.html"}));
+app.get('*', function (request, response) {
+    response.sendFile(path.resolve(__dirname, 'web/index.html'));
+});
+
+//Endpoint for monitoring
+app.get('/status', function (req, res) {
+    res.send("RUNNING")
+})
+
+
 GraphQLExtension.didEncounterErrors
 
 const apolloServer = new ApolloServer({
@@ -57,22 +75,6 @@ const apolloServer = new ApolloServer({
 
 apolloServer.applyMiddleware({app})
 
-//STATIC FILES
-app.use('/media/avatar', express.static('media/avatar'));
-app.use('/media/logo', express.static('media/logo'));
-app.use('/media/export', express.static('media/export'));
-
-//WEB
-app.use('/', express.static('web', {index: "index.html"}));
-app.get('*', function (request, response) {
-    response.sendFile(path.resolve(__dirname, 'web/index.html'));
-});
-
-//Endpoint for monitoring
-app.get('/status', function (req, res) {
-    res.send("RUNNING")
-})
-
 //initialize permissions, roles, users, customs, seeds
 initService().then(() => {
 
@@ -83,7 +85,7 @@ initService().then(() => {
         DefaultLogger.info(`Web Server started: ${URL}`)
         DefaultLogger.info(`Graphql Server ready: ${URL}${apolloServer.graphqlPath}`)
     })
-    server.setTimeout(60000);
+    server.setTimeout(420000);
 
 }).catch(err => {
     DefaultLogger.error(err.message, err)

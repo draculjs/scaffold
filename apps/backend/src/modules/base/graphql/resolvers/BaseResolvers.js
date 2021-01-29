@@ -14,12 +14,14 @@ export default {
             })
         },
         pingTimeout: (parent, {}, {req}) => {
+            console.time("ping")
             console.log("PingDelayed started req.connection.timeout:", req.connection.timeout)
             return new Promise(resolve => {
                 setTimeout(() => {
                     console.log("PingDelayed resolved")
+                    console.timeEnd("ping")
                     resolve({status: true})
-                }, 250000)
+                }, 480000)
             })
         },
         errorDemo: (_) => {

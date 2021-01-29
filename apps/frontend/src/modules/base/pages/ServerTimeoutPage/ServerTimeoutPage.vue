@@ -31,7 +31,7 @@
             this.loading = true
             baseProvider.pingTimeout()
                 .then(response => {
-                    this.response = response.toString()
+                    this.response = JSON.stringify(response)
                 })
                 .catch(err => {
                     this.error = err.toString()
