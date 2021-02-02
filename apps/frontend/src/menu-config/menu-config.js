@@ -9,7 +9,7 @@ export default [
 
     {
         icon: 'person',
-        text: 'Administrador',
+        text: 'menu.administration',
         panel: false,
         permission: 'SECURITY_ADMIN_MENU',
         children: [
