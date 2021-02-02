@@ -22,7 +22,8 @@ export default new Vuex.Store({
                 {
                     user: {
                         access_token: state.user.access_token,
-                        me: state.user.me
+                        me: state.user.me,
+                        avatarurl: state.user.avatarurl
                     },
                     customization: {
                         colors: state.customization.colors,
