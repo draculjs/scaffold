@@ -8,8 +8,11 @@ import router from "./router";
 import apolloClient from './apollo'
 import {setGraphQlClientToProviders} from '@dracul/user-frontend'
 import {customizationProvider} from '@dracul/customize-frontend'
+import {notificationProvider} from '@dracul/notification-frontend'
 setGraphQlClientToProviders(apolloClient)
 customizationProvider.setGqlc(apolloClient)
+notificationProvider.setGqlc(apolloClient)
+notificationProvider.setGqlcWs(apolloClient)
 
 Vue.config.productionTip = false
 
