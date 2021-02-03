@@ -11,9 +11,29 @@ import {initPermissionsCustomization} from '@dracul/customize-backend'
 import {initCustomization} from './custom/initCustomization'
 import operatorRole from './custom/initOperatorRole'
 
+import {
+    permissions as notiPermissions
+} from "@dracul/notification-backend"
+
+import modulesPermissions from './custom/modulesPermissions'
+
 const initService = async () => {
+
+    //Default user Permissions
     await InitService.initPermissions()
+
+    //Notification permissions
+    await InitService.initPermissions([
+        notiPermissions.NOTIFICATION_SHOW,
+        notiPermissions.NOTIFICATION_CREATE,
+        notiPermissions.NOTIFICATION_UPDATE
+    ])
+
+    //Dracul Customization module Permissions
     await initPermissionsCustomization()
+
+    //Custom Module permissions
+    await InitService.initPermissions(modulesPermissions)
 
     await InitService.initAdminRole()
     await InitService.initOperatorRole()
