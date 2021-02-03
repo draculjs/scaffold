@@ -27,6 +27,7 @@ router.beforeEach((to, from, next) => {
             if (to.meta.role && !store.getters.hasRole(to.meta.role)) {
                 next({path: '/', query: {redirect: to.fullPath}})
             } else if (to.meta.permission && !store.getters.hasPermission(to.meta.permission)) {
+                //console.warn("PERMISO DENEGADO", to.meta.permission)
                 next({path: '/', query: {redirect: to.fullPath}})
             }else{
                 next()
