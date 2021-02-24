@@ -4,7 +4,7 @@ FROM node:12.16.1-alpine3.9 as builder
 COPY ./apps /workspace
 
 #API
-WORKDIR /workspace/api
+WORKDIR /workspace/backend
 RUN npm install
 RUN npm run build
 
@@ -19,7 +19,7 @@ FROM node:12.16.1-alpine3.9
 RUN apk add bash
 RUN npm install pm2 -g
 
-COPY --from=builder /workspace/api/dist /app
+COPY --from=builder /workspace/backend/dist /app
 COPY --from=builder /workspace/frontend/dist /app/web
 
 WORKDIR /app

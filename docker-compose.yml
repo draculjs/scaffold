@@ -11,7 +11,7 @@ services:
     ports:
       - "8060:5000"
     environment:
-      NODE_ENV: "development"
+      NODE_ENV: "production"
       MONGO_URI: "mongodb://127.0.0.1:27017/dracul"
       JWT_SECRET: "V8wzw4iL9H40oxXAVj9u"
       JWT_LOGIN_EXPIRED_IN: "3d"
