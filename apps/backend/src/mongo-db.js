@@ -11,7 +11,7 @@ const mongoConnect = async function(){
     }
 
     try{
-        await connectToMongo(mongoose,process.env.MONGO_URI)
+        await connectToMongo(process.env.MONGO_URI)
         const db = mongoose.connection;
 
         db.on('error', async function (){
