@@ -5,7 +5,10 @@ DefaultLogger.info("Starting APP")
 
 import initService from "./init/init-service";
 import express from 'express';
-import './mongo-db'
+
+const mongoConnect = require('./mongo-db')
+mongoConnect()
+
 import {ApolloServer, GraphQLExtension} from 'apollo-server-express'
 import {resolvers, typeDefs} from './modules-merge'
 import path from 'path'
