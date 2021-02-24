@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <layout :menu="menu">
       <template v-slot:toolbar-left>
         <logo-toolbar></logo-toolbar>
@@ -15,7 +14,6 @@
 
       <router-view></router-view>
     </layout>
-  </v-app>
 </template>
 
 <script>

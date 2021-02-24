@@ -1,29 +1,30 @@
 <template>
-    <v-footer dark padless>
-        <v-card
-                flat
-                tile
-                class="secondary white--text text-center"
-                min-width="100%"
-        >
+  <v-footer dark padless>
+    <v-card
+        flat
+        tile
+        class="text-center"
+        min-width="100%"
+        height="60px"
+    >
+      <div style="position: absolute; top:0%; right: 3%">
+        <dark-mode></dark-mode>
+      </div>
+      <v-card-text>
+        {{ new Date().getFullYear() }} <strong>@CodeChallange</strong>
+      </v-card-text>
 
-            <v-card-text class="onSecondary--text py-2">
-                APP NAME
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-text class="white--text blue-grey darken-4 pa-1">
-                {{ new Date().getFullYear() }}  <strong>@CI</strong>
-            </v-card-text>
-        </v-card>
-    </v-footer>
+    </v-card>
+  </v-footer>
 </template>
 
 <script>
-    export default {
-        name: "Footer"
-    }
+import DarkMode from "@/layout/components/DarkMode";
+
+export default {
+  name: "Footer",
+  components: {DarkMode}
+}
 </script>
 
 <style scoped>

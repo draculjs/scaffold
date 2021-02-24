@@ -21,6 +21,14 @@ export default new Vuetify({
     theme: {
         themes: {
             light: {
+                background: "#F5F5F5",
+                primary: colors.primary,
+                secondary: colors.secondary,
+                onPrimary: colors.onPrimary,
+                onSecondary: colors.onSecondary
+            },
+            dark: {
+                background: "#424242",
                 primary: colors.primary,
                 secondary: colors.secondary,
                 onPrimary: colors.onPrimary,
