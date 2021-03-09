@@ -14,11 +14,12 @@ const mongoConnect = async function(){
         await connectToMongo(process.env.MONGO_URI)
         const db = mongoose.connection;
 
-        db.on('error', async function (){
+        db.on('error', function (){
             console.error.bind(console, 'connection error:')
             DefaultLogger.info("Reconnecting with MongoDB")
-            await connectToMongo(process.env.MONGO_URI)}
-        );
+            setTimeout(() => connectToMongo(process.env.MONGO_URI), 3000)
+        });
+
         db.once('open', function() {
             DefaultLogger.info("MongoDB Open")
         });
