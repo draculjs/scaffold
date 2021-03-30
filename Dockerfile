@@ -1,16 +1,30 @@
 #BULDER
 FROM node:12.16.1-alpine3.9 as builder
 
-COPY ./apps /workspace
+#BACKEND Dependencies
+COPY ./apps/backend/package.json /workspace/backend/package.json
+COPY ./apps/backend/package-lock.json /workspace/backend/package-lock.json
 
-#API
 WORKDIR /workspace/backend
 RUN npm install
-RUN npm run build
 
-#Frontend
+
+#FRONTEND Dependencies
+COPY ./apps/frontend/package.json /workspace/frontend/package.json
+COPY ./apps/frontend/package-lock.json /workspace/frontend/package-lock.json
+
 WORKDIR /workspace/frontend
 RUN npm install
+
+#CP APPs BACKEND & FRONTEND
+COPY ./apps /workspace
+
+#BACKEND BUILD
+WORKDIR /workspace/backend
+RUN npm run build
+
+#FRONTEND BUILD
+WORKDIR /workspace/frontend
 RUN npm run build
 
 #RUNNER
