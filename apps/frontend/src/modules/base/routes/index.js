@@ -4,7 +4,8 @@ import ServerStatus from '../pages/ServerStatusPage'
 import ServerTimeout from '../pages/ServerTimeoutPage'
 
 const routes = [
-    {name: "home", path: '/', component: Home},
+    {name: "root",  path: '/', redirect: {name: 'home'}},
+    {name: "home", path: '/home', component: Home},
     {name: "about", path: '/about', component: About},
     {name: "serverStatus", path: '/server-status', component: ServerStatus},
     {name: "serverTimeout", path: '/server-timeout', component: ServerTimeout},
