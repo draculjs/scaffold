@@ -1,10 +1,11 @@
 <template>
   <v-list dense class="pt-3">
-    <template v-for="item in nav">
+    <template v-for="(item) in nav">
 
       <v-list-group
           v-if="item.children && isGranted(item)"
           :key="item.text"
+          :value="isActive(item)"
       >
 
         <v-list-item slot="activator">
@@ -58,25 +59,20 @@ export default {
   },
   methods: {
     isGranted: function (item) {
-
-
       if (item.role && item.permission) {
-        if (this.isAuth && item.role == this.me.role.name && this.me.role.permissions.includes(item.permission)) {
+        if (this.isAuth && this.me && item.role == this.me.role.name && this.me.role.permissions.includes(item.permission)) {
           return true
         }
         return false
       }
-
-
       if (item.role) {
-        if (this.isAuth && item.role == this.me.role.name) {
+        if (this.isAuth && this.me && this.me.role && item.role == this.me.role.name) {
           return true
         }
         return false
       }
-
       if (item.permission) {
-        if (this.isAuth && this.me.role.permissions.includes(item.permission)) {
+        if (this.isAuth && this.me && this.me.role && this.me.role.permissions && this.me.role.permissions.includes(item.permission)) {
           return true
         }
         return false
@@ -94,6 +90,21 @@ export default {
       'isAuth',
       'me'
     ]),
+    isActive(){
+      return item => {
+        if(item.children){
+          return item.children.some(i => {
+            if(i.link && i.link.name){
+              return i.link.name === this.$route.name
+            }
+            return false
+          })
+        }else if(item.link && item.link.name){
+          return item.link.name === this.$route.name
+        }
+
+      }
+    }
   },
 
 }
