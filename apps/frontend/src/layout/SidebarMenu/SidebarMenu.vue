@@ -17,7 +17,7 @@
         </v-list-item>
 
         <v-list-item
-            v-for="child in item.children"
+            v-for="child in childActives(item.children)"
             :key="child.text"
             :to="child.link"
             @click="$emit('closeDrawer')"
@@ -90,6 +90,11 @@ export default {
       'isAuth',
       'me'
     ]),
+    childActives(){
+      return items => {
+        return items.filter(item => this.isGranted(item))
+      }
+    },
     isActive(){
       return item => {
         if(item.children){
