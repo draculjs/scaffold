@@ -12,10 +12,10 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@dracul/common-frontend": "^1.0.141",
-    "@dracul/customize-frontend": "^1.0.145",
-    "@dracul/notification-frontend": "^1.0.98",
-    "@dracul/user-frontend": "^1.0.145",
+    "@dracul/common-frontend": "^1.0.146",
+    "@dracul/customize-frontend": "^1.0.149",
+    "@dracul/notification-frontend": "^1.0.147",
+    "@dracul/user-frontend": "^1.0.149",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
@@ -35,7 +35,8 @@
     "vue-router": "^3.3.2",
     "vuetify": "^2.3.4",
     "vuex": "^3.4.0",
-    "vuex-persistedstate": "^3.0.1"
+    "vuex-persistedstate": "^3.0.1",
+    "dayjs": "^1.10.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
