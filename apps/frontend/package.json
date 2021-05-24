@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "front": "vue-cli-service serve",
     "build": "vue-cli-service build --dest dist --mode production",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
@@ -12,10 +12,10 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@dracul/common-frontend": "^1.0.146",
-    "@dracul/customize-frontend": "^1.0.149",
-    "@dracul/notification-frontend": "^1.0.147",
-    "@dracul/user-frontend": "^1.0.149",
+    "@dracul/common-frontend": "^1.1.2",
+    "@dracul/customize-frontend": "^1.1.3",
+    "@dracul/notification-frontend": "^1.1.3",
+    "@dracul/user-frontend": "^1.1.3",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",

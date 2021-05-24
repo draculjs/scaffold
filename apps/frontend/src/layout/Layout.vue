@@ -11,7 +11,7 @@
       <slot name="toolbar-right"></slot>
     </v-app-bar>
 
-    <v-main class="grey lighten-3">
+    <v-main>
       <slot></slot>
     </v-main>
 
