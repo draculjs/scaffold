@@ -23,6 +23,10 @@ const app = express();
 app.use(corsMiddleware)
 app.use(express.json())
 app.use(jwtMiddleware)
+app.use(function (err, req, res, next) {
+    console.error("JWT error:", err)
+    next()
+});
 
 app.use(RequestMiddleware)
 app.use(ResponseTimeMiddleware)

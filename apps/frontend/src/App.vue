@@ -35,6 +35,15 @@ export default {
   mounted() {
     this.$store.dispatch('checkAuth')
   },
+  watch: {
+    '$store.state.user.access_token': {
+      handler(val) {
+        if (val === null && this.$route.name != 'login') {
+          this.$router.push({name: 'login'})
+        }
+      }
+    }
+  },
   computed: {
     ...mapGetters(['me']),
     getUserId() {
