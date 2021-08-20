@@ -1,4 +1,3 @@
-import {ForbiddenError} from "apollo-server-errors";
 
 
 export default {
