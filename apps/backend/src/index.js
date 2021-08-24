@@ -26,8 +26,8 @@ app.use(jwtMiddleware)
 
 
 app.use(function (err, req, res, next) {
-    if(err){
-        console.error("JWT error:", err)
+    if(err && err.name === 'UnauthorizedError'){
+        DefaultLogger.warn(err.message)
     }
     next()
 });
