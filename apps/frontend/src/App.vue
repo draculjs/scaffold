@@ -6,13 +6,14 @@
       </template>
 
       <template v-slot:toolbar-right>
-        <notification-button :user-id="getUserId"/>
+        <notification-button v-if="me" :user-id="getUserId"/>
         <dashboard-button/>
         <app-bar-user-menu/>
       </template>
 
 
       <router-view></router-view>
+      <error-snackbar></error-snackbar>
     </layout>
 </template>
 
@@ -23,10 +24,11 @@ import menuConfig from './menu-config'
 import {DashboardButton, AppBarUserMenu} from '@dracul/user-frontend'
 import {LogoToolbar, TitleToolbar} from '@dracul/customize-frontend'
 import {mapGetters} from "vuex";
+import ErrorSnackbar from "@/modules/base/components/ErrorSnackbar";
 
 export default {
   name: 'App',
-  components: {Layout, DashboardButton, AppBarUserMenu, LogoToolbar, TitleToolbar, NotificationButton},
+  components: {ErrorSnackbar, Layout, DashboardButton, AppBarUserMenu, LogoToolbar, TitleToolbar, NotificationButton},
   data() {
     return {
       menu: menuConfig
