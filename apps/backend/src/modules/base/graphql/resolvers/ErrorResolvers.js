@@ -1,15 +1,23 @@
-import {ForbiddenError, AuthenticationError, UserInputError, ValidationError, ApolloError} from "apollo-server-errors";
+import {
+    ForbiddenError,
+    AuthenticationError,
+    UserInputError,
+    ValidationError,
+    ApolloError
+} from "apollo-server-errors";
+
+import CustomError from "../../errors/CustomError";
 import BaseError from './../../model/BaseErrorModel'
 
 export default {
     Query: {
-        errorNotAuthorized: (_) => {
+        getNotAuthorized: (_) => {
             throw new ForbiddenError("Custom Message ForbiddenError")
         },
-        errorAuthenticationError: (_) => {
-            throw new AuthenticationError("Custom Message AuthenticationError")
+        getAuthenticationError: (_,{},{user}) => {
+                throw new AuthenticationError("Custom Message AuthenticationError")
         },
-        errorUserInputError: (_) => {
+        getUserInputError: (_) => {
             const baseError = new BaseError({
                 name: 'abc123',
                 age: 66,
@@ -18,11 +26,19 @@ export default {
             let validationErrors = baseError.validateSync();
             throw new UserInputError("Custom Message UserInputError", {inputErrors: validationErrors.errors})
         },
-        errorValidationError: (_) => {
+        getValidationError: (_) => {
             throw new ValidationError("Custom Message ValidationError")
         },
-        errorApolloError: (_) => {
+        getApolloError: (_) => {
             throw new ApolloError("Custom Message ApolloError")
+        },
+        getCustomError: (_) => {
+            throw new CustomError("Custom Message CustomError")
+        },
+        getTimeout: (_) => {
+           return new Promise((resolve, reject) => {
+               setTimeout(()=> {resolve("TIMEOUT")}, 600000)
+           })
         },
     }
 }

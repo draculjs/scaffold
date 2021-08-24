@@ -1,45 +1,87 @@
 import apolloClient from '../../../apollo'
+
+import {ApolloClient} from 'apollo-client'
+
 import gql from "graphql-tag";
+import {InMemoryCache} from "apollo-cache-inmemory";
+import { createHttpLink } from "apollo-link-http";
+
+
 class ErrorProvider {
 
     constructor() {
         this.gqlc = null
+        this.gqlcFail = null
+        this.buildGqlcFail()
     }
 
     setGqlc(gqlc){
         this.gqlc = gqlc
     }
 
-    errorNotAuthorized(){
-        return this.gqlc.query({
-            query: gql`query {errorNotAuthorized}`
+    buildGqlcFail(){
+        this.gqlcFail = new ApolloClient({
+            link: createHttpLink({ uri: "http://localhost:666/graphql" }),
+           // link: createHttpLink({ uri: "http://192.168.0.59:666/graphql" }),
+            cache: new InMemoryCache(),
         })
     }
 
-    errorAuthenticationError(){
+
+    getNotAuthorized(){
         return this.gqlc.query({
-            query: gql`query {errorAuthenticationError}`
+            query: gql`query {getNotAuthorized}`
         })
     }
 
-    errorUserInputError(){
+    getAuthenticationError(){
         return this.gqlc.query({
-            query: gql`query {errorUserInputError}`
+            query: gql`query {getAuthenticationError}`
         })
     }
 
-    errorApolloError(){
+    getUserInputError(){
         return this.gqlc.query({
-            query: gql`query {errorApolloError}`
+            query: gql`query {getUserInputError}`
         })
     }
 
-    errorMulti(){
+   getApolloError(){
         return this.gqlc.query({
-            query: gql`query {errorNotAuthorized errorAuthenticationError errorApolloError }`
+            query: gql`query {getApolloError}`
         })
     }
 
+    getUnknownOperation(){
+        return this.gqlc.query({
+            query: gql`query {getUnknownOperation}`
+        })
+    }
+
+
+    getMultipleErrors(){
+        return this.gqlc.query({
+            query: gql`query {getNotAuthorized getAuthenticationError getApolloError }`
+        })
+    }
+
+    getCustomError(){
+        return this.gqlc.query({
+            query: gql`query {getCustomError }`
+        })
+    }
+
+    getFail(){
+        return this.gqlcFail.query({
+            query: gql`query {getFail }`
+        })
+    }
+
+    getTimeout(){
+        return this.gqlc.query({
+            query: gql`query {getTimeout }`
+        })
+    }
 }
 const errorProvider = new ErrorProvider()
 errorProvider.setGqlc(apolloClient)

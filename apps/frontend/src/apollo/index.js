@@ -28,7 +28,10 @@ const errorLink = onError(({graphQLErrors, networkError}) => {
         );
 
     if (networkError) {
-        console.error(`[Network error]: ${networkError}`);
+        console.error(`[Network error]: ${networkError}, message: ${networkError.message}`);
+        //Add error for errorSnackbar
+        setTimeout(() => store.commit('addGraphqlError',networkError),10 )
+
     }
 });
 

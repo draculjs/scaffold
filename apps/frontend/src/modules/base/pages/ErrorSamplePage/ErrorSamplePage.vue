@@ -7,6 +7,11 @@
     <v-btn class="ma-1" color="purple" dark @click="errorApolloError">Internal Error</v-btn>
     <v-btn class="ma-1" color="orange" dark @click="errorUserInputError">User Input Error</v-btn>
     <v-btn class="ma-1" color="teal" dark @click="errorMulti">Multi</v-btn>
+    <v-btn class="ma-1" color="cyan" dark @click="errorCustom">Custom</v-btn>
+    <v-btn class="ma-1" color="brown" dark @click="getUnknownOperation">Unknown GVF</v-btn>
+    <v-btn class="ma-1" color="pink" dark @click="getTimeout">TimeOut</v-btn>
+    <v-btn class="ma-1" color="indigo" dark @click="getFail">Refuse</v-btn>
+    <v-btn class="ma-1" color="black" dark @click="errorCustom">Network Error</v-btn>
 
     <v-row v-if="error">
       <v-col cols="12" md="6" v-for="(gqlError,i) in error.graphQLErrors" :key="i">
@@ -53,44 +58,78 @@ export default {
       error: null
     }
   },
-  computed: {
-    getInputErrors(){
-      return ie => this.renderjson(ie)
-    }
-  },
   methods: {
     errorNotAuthorized() {
-      errorProvider.errorNotAuthorized()
+      errorProvider.getNotAuthorized()
           .catch(error => {
             console.log(error.graphQLErrors)
             this.error = error
           })
     },
     errorAuthenticationError() {
-      errorProvider.errorAuthenticationError()
+      errorProvider.getAuthenticationError()
           .catch(error => {
             console.log(error.graphQLErrors)
             this.error = error
           })
     },
     errorApolloError() {
-      errorProvider.errorApolloError()
+      errorProvider.getApolloError()
           .catch(error => {
             console.log(error.graphQLErrors)
             this.error = error
           })
     },
     errorUserInputError() {
-      errorProvider.errorUserInputError()
+      errorProvider.getUserInputError()
           .catch(error => {
             console.log(error.graphQLErrors)
             this.error = error
           })
     },
     errorMulti() {
-      errorProvider.errorMulti()
+      errorProvider.getMultipleErrors()
           .catch(error => {
             //console.log(error.graphQLErrors)
+            this.error = error
+          })
+    },
+    errorCustom() {
+      errorProvider.getCustomError()
+          .catch(error => {
+            //console.log(error.graphQLErrors)
+            this.error = error
+          })
+    },
+    getUnknownOperation(){
+      errorProvider.getUnknownOperation()
+          .catch(error => {
+            console.log("LocalError getUnknownOperation",error)
+            this.error = error
+          })
+    },
+    getNetworkError(){
+      errorProvider.getUnknownOperation()
+          .catch(error => {
+            console.log("LocalError getUnknownOperation",error)
+            this.error = error
+          })
+    },
+    getFail(){
+      errorProvider.getFail()
+          .catch(error => {
+            console.log("LocalError getFail",error)
+            this.error = error
+          })
+    },
+    getTimeout(){
+      console.log("Inicia Timeout")
+      errorProvider.getTimeout()
+          .then(() => {
+            console.log("Then Timeout")
+          })
+          .catch(error => {
+            console.log("LocalError getTimeout",error)
             this.error = error
           })
     }

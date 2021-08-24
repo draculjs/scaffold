@@ -5,9 +5,12 @@ type BaseError{
 }
 
 type Query {
-    errorNotAuthorized: String
-    errorAuthenticationError: String
-    errorUserInputError: String
-    errorValidationError: String
-    errorApolloError: String
+    getNotAuthorized: String
+    getAuthenticationError: String
+    getUserInputError: String
+    getValidationError: String
+    getApolloError: String
+    getCustomError: String
+    getTimeout: String
+    getNetworkError: String
 }
