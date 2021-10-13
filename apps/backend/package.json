@@ -7,6 +7,7 @@
     "back": "BABEL_DISABLE_CACHE=1 nodemon src/index.js --exec babel-node -e js",
     "init": "BABEL_DISABLE_CACHE=1 babel-node  src/init-script.js",
     "build": "./node_modules/.bin/babel src -d dist --copy-files && ./node_modules/.bin/babel emails -d dist/emails --copy-files && cp media dist/ -r && cp .env.example dist/.env && cp package.json dist/package.json",
+    "buildpm2": "./node_modules/.bin/babel src -d ../../dist --copy-files && ./node_modules/.bin/babel emails -d ../../dist/emails --copy-files && cp media ../../dist/ -r && cp web ../../dist/ -r  && cp package.json ../../dist/package.json",
     "test": "jest"
   },
   "repository": {
@@ -26,10 +27,12 @@
   },
   "homepage": "https://github.com/skeleton-metal/apollo-server-express#readme",
   "dependencies": {
-    "@dracul/customize-backend": "^1.1.28",
+    "@dracul/common-backend": "^1.0.112",
+    "@dracul/customize-backend": "^1.2.10",
     "@dracul/logger-backend": "^1.0.105",
     "@dracul/notification-backend": "^1.0.105",
-    "@dracul/user-backend": "^1.1.28",
+    "@dracul/user-backend": "^1.2.10",
+    "@dracul/settings-backend": "^1.1.11",
     "apollo-server-express": "^2.12.0",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",

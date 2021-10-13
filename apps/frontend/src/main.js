@@ -9,10 +9,12 @@ import apolloClient from './apollo'
 import {setGraphQlClientToProviders} from '@dracul/user-frontend'
 import {customizationProvider} from '@dracul/customize-frontend'
 import {notificationProvider} from '@dracul/notification-frontend'
+import {SettingsProvider} from '@dracul/settings-frontend'
 setGraphQlClientToProviders(apolloClient)
 customizationProvider.setGqlc(apolloClient)
 notificationProvider.setGqlc(apolloClient)
 notificationProvider.setGqlcWs(apolloClient)
+SettingsProvider.setGqlc(apolloClient)
 
 Vue.config.productionTip = false
 

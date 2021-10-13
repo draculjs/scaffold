@@ -15,6 +15,12 @@ import {
     permissions as notiPermissions
 } from "@dracul/notification-backend"
 
+import {
+    permissions as settingsPermissions
+} from '@dracul/settings-backend'
+
+import {initSettings} from './custom/initSettings'
+
 import modulesPermissions from './custom/modulesPermissions'
 
 const initService = async () => {
@@ -28,6 +34,17 @@ const initService = async () => {
         notiPermissions.NOTIFICATION_CREATE,
         notiPermissions.NOTIFICATION_UPDATE
     ])
+
+    //Settings Permissions
+    await InitService.initPermissions([
+        settingsPermissions.SETTINGS_CREATE,
+        settingsPermissions.SETTINGS_UPDATE,
+        settingsPermissions.SETTINGS_DELETE,
+        settingsPermissions.SETTINGS_SHOW,
+    ])
+
+    //Init settings
+    await initSettings()
 
     //Dracul Customization module Permissions
     await initPermissionsCustomization()

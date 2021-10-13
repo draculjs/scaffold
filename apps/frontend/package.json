@@ -5,6 +5,7 @@
   "scripts": {
     "front": "vue-cli-service serve",
     "build": "vue-cli-service build --dest dist --mode production",
+    "buildpm2": "vue-cli-service build --dest ../../dist/web --mode production",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "test": "jest",
@@ -13,9 +14,10 @@
   },
   "dependencies": {
     "@dracul/common-frontend": "^1.1.14",
-    "@dracul/customize-frontend": "^1.1.30",
+    "@dracul/customize-frontend": "^1.2.12",
     "@dracul/notification-frontend": "^1.1.31",
-    "@dracul/user-frontend": "^1.1.30",
+    "@dracul/user-frontend": "^1.2.12",
+    "@dracul/settings-frontend": "^1.2.23",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
