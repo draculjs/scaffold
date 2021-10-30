@@ -21,8 +21,8 @@ export const resolvers = mergeResolvers([
 ])
 
 export const typeDefs = mergeTypes([
-    baseTypes,
     commonTypes,
+    baseTypes,
     securityTypes,
     notificationTypes,
     customTypes,
