@@ -1,5 +1,5 @@
-import mongoInMemory from '../../mongo-inmemory'
-import initService from '../../../src/init/init-service'
+import mongoInMemory from '../mongo-inmemory'
+import initService from '../../src/init/init-service'
 
 
 describe("template", () => {
