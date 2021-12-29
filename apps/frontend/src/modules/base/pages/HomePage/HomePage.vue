@@ -1,32 +1,19 @@
 <template>
   <v-container fill-height>
-    <v-row justify="center" align="center">
-      <v-col cols="12" sm="4" class="text-center">
-        <home-card
-            title="Users"
-            icon="people"
-            :to="{name:'userDashboard'}"
-        />
-      </v-col>
-      <v-col cols="12" sm="4" class="text-center">
-        <home-card
-            title="Settings"
-            icon="settings"
-            :to="{name:'SettingsPage'}"
-        />
-      </v-col>
-    </v-row>
+    <gallery-menu :nav="menu"> </gallery-menu>
   </v-container>
 </template>
+
 <script>
-import HomeCard from "./HomeCard";
+import menuConfig from "@/menu-config/menu-config"
+import GalleryMenu from "@/layout/GalleryMenu/GalleryMenu";
 
 export default {
   name: 'HomePage',
-  components: {HomeCard},
-  created() {
-    if (this.$store.getters.me === null) {
-      this.$router.push({name: 'login'})
+  components: {GalleryMenu},
+  computed: {
+    menu() {
+      return menuConfig
     }
   }
 }
