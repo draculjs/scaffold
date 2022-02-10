@@ -4,7 +4,7 @@ export default [
         icon: 'home',
         text:'base.home',
         link: { name: "home" },
-        panel: false
+        galleryHide: true
     },
 
     {

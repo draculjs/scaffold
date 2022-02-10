@@ -4,7 +4,7 @@
     <template v-for="(item) in nav">
 
         <v-col cols="12"
-            v-if="item.children && isGranted(item)"
+            v-if="item.children && isGranted(item) && !item.galleryHide"
             :key="item.text"
             :value="isActive(item)"
         >
@@ -12,7 +12,7 @@
           <h4 class="text-h4">
             {{ $t(item.text) }}
           </h4>
-          <v-divider></v-divider>
+          <v-divider class="mb-3"></v-divider>
 
           <v-row>
             <v-col cols="12" sm="4" md="4"
@@ -31,7 +31,7 @@
 
 
         <v-col cols="12" sm="4" md="4"
-            v-else-if="isGranted(item)"
+            v-else-if="isGranted(item) && !item.galleryHide"
             :key="item.text"
         >
           <menu-card
