@@ -40,7 +40,7 @@ export default {
   watch: {
     '$store.state.user.access_token': {
       handler(val) {
-        if (val === null && this.$route.name != 'login') {
+        if (val === null && (this.$route.name != 'login' && this.$route.name != 'recovery')) {
           this.$router.push({name: 'login'})
         }
       }
