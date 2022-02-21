@@ -1,104 +1,31 @@
 require('dotenv').config();
 import {DefaultLogger} from "@dracul/logger-backend";
+import expressApp from './express-app'
+import apolloServer from './apollo-server'
+import initService from "./init/init-service";
+import defaultRoute from "./routes/DefaultRoute";
+const mongoConnect = require('./mongo-db')
+
 DefaultLogger.info("Starting APP")
 
-
-import initService from "./init/init-service";
-import express from 'express';
-
-const mongoConnect = require('./mongo-db')
+//Connect to MongoDb
 mongoConnect()
 
-import {ApolloServer, GraphQLExtension} from 'apollo-server-express'
-import {resolvers, typeDefs} from './modules-merge'
-import path from 'path'
-import {jwtMiddleware, corsMiddleware, rbacMiddleware, sessionMiddleware} from '@dracul/user-backend'
-import {ResponseTimeMiddleware,RequestMiddleware, GqlErrorLog, GqlResponseLog} from '@dracul/logger-backend'
-import {TimeoutMiddleware} from "./middlewares/TimeoutMiddleware";
+//Link ApolloServer with ExpressApp
+apolloServer.applyMiddleware({app: expressApp})
 
-const app = express();
-
-
-
-app.use(corsMiddleware)
-app.use(express.json())
-app.use(jwtMiddleware)
-
-
-app.use(function (err, req, res, next) {
-    if(err && err.name === 'UnauthorizedError'){
-        DefaultLogger.warn(err.message)
-    }
-    next()
-});
-
-
-
-app.use(RequestMiddleware)
-app.use(ResponseTimeMiddleware)
-
-//app.use(TimeoutMiddleware)
-
-app.use(rbacMiddleware)
-app.use(sessionMiddleware)
-
-/* app.use((req, res, next)=>{
-    throw new Error("ERROR")
-})*/
-
-GraphQLExtension.didEncounterErrors
-
-const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: ({req}) => {
-        return {user: req.user, rbac: req.rbac, req}
-    },
-    plugins: [
-        {
-            requestDidStart(requestContext) {
-                return {
-                    didEncounterErrors(requestContext) {
-                        GqlErrorLog(requestContext)
-                    },
-                    willSendResponse(requestContext) {
-                        GqlResponseLog(requestContext)
-                    }
-                }
-            }
-        }
-    ]
-});
-
-
-apolloServer.applyMiddleware({app})
-
-//STATIC FILES
-app.use('/media/avatar', express.static('media/avatar'));
-app.use('/media/logo', express.static('media/logo'));
-app.use('/media/export', express.static('media/export'));
-
-
-//Endpoint for monitoring
-app.get('/status', function (req, res) {
-    res.send("RUNNING")
-})
-
-//Web Static Files for Production
-app.use('/', express.static('web', {index: "index.html"}));
-app.use('*',function (request, response) {
-    response.sendFile(path.resolve(__dirname, 'web/index.html'));
-});
-
-
+//Default route to frontend web on monorepo strategy
+expressApp.use(defaultRoute)
 
 //initialize permissions, roles, users, customs, seeds
-initService().then(() => {
+initService()
+    //After initialize start to listen request
+    .then(() => {
 
     const PORT = process.env.APP_PORT ? process.env.APP_PORT : "5000"
     const URL = process.env.APP_API_URL ? process.env.APP_API_URL : "http://localhost" + PORT
 
-    const server = app.listen(PORT, () => {
+    const server = expressApp.listen(PORT, () => {
         DefaultLogger.info(`Web Server started: ${URL}`)
         DefaultLogger.info(`Graphql Server ready: ${URL}${apolloServer.graphqlPath}`)
     })
