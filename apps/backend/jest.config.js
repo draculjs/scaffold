@@ -10,7 +10,12 @@ module.exports = {
     ],
 
     setupFiles: [
-        "<rootDir>/.jest/EnvVars.js"
+
+    ],
+
+    setupFiles: [
+        'dotenv/config',
+        //"<rootDir>/.jest/env-vars.js"
     ],
 
     transform: {

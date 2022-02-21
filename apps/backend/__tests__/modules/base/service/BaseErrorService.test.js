@@ -1,8 +1,9 @@
 import mongoInMemory from "../../../mongo-inmemory";
 import initService from "../../../../src/init/init-service";
+import {findBaseError} from "../../../../src/modules/base/service/BaseErrorService";
 
 
-describe("template", () => {
+describe("base error service", () => {
 
 
     beforeAll(async () => {
@@ -17,6 +18,7 @@ describe("template", () => {
 
 
     test('template true', async () => {
+        let error = await findBaseError()
         expect(true).toBe(true)
     })
 
