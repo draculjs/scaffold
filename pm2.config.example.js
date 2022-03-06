@@ -14,6 +14,7 @@ module.exports = {
                 //### JWT ENVIRONMENT VARIABLES ###
                 JWT_SECRET: 'djghhhhuuwiwuewieuwiehyew',
                 JWT_LOGIN_EXPIRED_IN: '1d',
+                JWT_REFRESHTOKEN_EXPIRED_IN: '1d',
                 JWT_REGISTER_EXPIRED_IN: '30d',
 
                 //### APP ENVIRONMENT VARIABLES ###
