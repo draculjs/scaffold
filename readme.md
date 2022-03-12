@@ -27,17 +27,17 @@ This scaffold depends on dracul framework modules
 
 ### Installation and Run
 
-- In /apps/frontend and /apps/apiand execute:
+- In /apps/frontend and /apps/backend and execute:
     ```js
     $ npm install
     ```
-- Create .env file in frontend and api (exist an example.env)
+- Create .env file Backend (exist an .env.example)
 - Run project:
     - Frontend: 
     ```js
-    $ npm run serve
+    $ npm run front
     ```
-    - Api: 
+    - Backend: 
     ```js
-    $ npm start
+    $ npm run back
     ```
