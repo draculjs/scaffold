@@ -4,6 +4,12 @@ import vuetify from './plugins/vuetify';
 import store from './store'
 import i18n from './i18n'
 import router from "./router";
+import VueMeta from 'vue-meta'
+
+Vue.use(VueMeta, {
+    // optional pluginOptions
+    refreshOnceOnNavigation: true
+})
 
 import apolloClient from './apollo'
 import {setGraphQlClientToProviders} from '@dracul/user-frontend'

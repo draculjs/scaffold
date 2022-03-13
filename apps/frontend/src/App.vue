@@ -28,6 +28,13 @@ import ErrorSnackbar from "@/modules/base/components/ErrorSnackbar";
 
 export default {
   name: 'App',
+  metaInfo: {
+    title: process.env.VUE_APP_NAME,
+    titleTemplate: '%s Dracul',
+    htmlAttrs: {
+      lang: 'es'
+    }
+  },
   components: {ErrorSnackbar, Layout, DashboardButton, AppBarUserMenu, LogoToolbar, TitleToolbar, NotificationButton},
   data() {
     return {
