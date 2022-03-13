@@ -1,10 +1,5 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import mongoose from 'mongoose'
-
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
-mongoose.set('useCreateIndex', true)
 
 import {InitService} from '@dracul/user-backend'
 import {initPermissionsCustomization} from '@dracul/customize-backend'
@@ -22,6 +17,7 @@ import {
 import {initSettings} from './custom/initSettings'
 
 import modulesPermissions from './custom/modulesPermissions'
+import {testNotification} from "./custom/testNotification";
 
 const initService = async () => {
 
@@ -63,6 +59,8 @@ const initService = async () => {
     await InitService.initOperatorUser()
 
     await initCustomization()
+
+    await testNotification()
 }
 
 export {initService}
