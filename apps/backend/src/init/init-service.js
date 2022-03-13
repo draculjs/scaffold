@@ -17,6 +17,7 @@ import {
 import {initSettings} from './custom/initSettings'
 
 import modulesPermissions from './custom/modulesPermissions'
+import {testNotification} from "./custom/testNotification";
 
 const initService = async () => {
 
@@ -58,6 +59,8 @@ const initService = async () => {
     await InitService.initOperatorUser()
 
     await initCustomization()
+
+    await testNotification()
 }
 
 export {initService}
