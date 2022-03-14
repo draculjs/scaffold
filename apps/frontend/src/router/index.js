@@ -1,12 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
+
 Vue.use(VueRouter)
 import store from '../store'
 
 const router = new VueRouter({
     mode: 'history',
-    routes: routes
+    routes: routes,
+    scrollBehavior() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({x: 0, y: 0})
+            }, 100)
+        })
+    }
 })
 
 router.beforeEach((to, from, next) => {
@@ -29,7 +37,7 @@ router.beforeEach((to, from, next) => {
             } else if (to.meta.permission && !store.getters.hasPermission(to.meta.permission)) {
                 //console.warn("PERMISO DENEGADO", to.meta.permission)
                 next({path: '/', query: {redirect: to.fullPath}})
-            }else{
+            } else {
                 next()
             }
 
