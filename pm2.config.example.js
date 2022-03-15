@@ -17,6 +17,9 @@ module.exports = {
                 JWT_REFRESHTOKEN_EXPIRED_IN: '1d',
                 JWT_REGISTER_EXPIRED_IN: '30d',
 
+                NOTIFICATION_TIME_POLLING:30000,
+                NOTIFICATION_ACTIVATE_WEB_SOCKET:"disable",
+
                 //### APP ENVIRONMENT VARIABLES ###
                 APP_NAME: 'DraculScaffold',
                 APP_PORT: 8050,

@@ -65,7 +65,7 @@ const link = ApolloLink.from([
 ]);
 
 // Cache implementation
-const cache = new InMemoryCache()
+const cache = new InMemoryCache({addTypename: false})
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
