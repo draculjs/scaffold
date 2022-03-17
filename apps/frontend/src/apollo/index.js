@@ -47,7 +47,7 @@ const apolloLink = new ApolloLink((operation, forward) => {
 //Middleware for Authorization
 const authLink = setContext(async (req, { headers }) => {
     let context = {headers: {...headers}}
-    if(req.operationName != "refreshToken"){
+    if(store.getters.getToken && req.operationName != "refreshToken"){
         let sessionIsValid = await store.dispatch('validateSession')
         if (sessionIsValid) {
             context.headers.Authorization = 'bearer ' + store.getters.getToken
