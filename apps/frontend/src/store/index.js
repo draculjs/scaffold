@@ -31,6 +31,9 @@ export default new Vuex.Store({
                         logo: state.customization.logo,
                         language: state.customization.language
                     },
+                    base: {
+                        darkMode: state.base.darkMode
+                    }
                 })
         })
     ]

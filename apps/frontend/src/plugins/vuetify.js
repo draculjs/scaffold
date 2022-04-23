@@ -13,7 +13,6 @@ let colors = {
 
 
 export default new Vuetify({
-    dark: store.getters.getDarkMode,
     lang: {
         t: (key, ...params) => i18n.t(key, params),
     },
@@ -21,6 +20,7 @@ export default new Vuetify({
         iconfont: 'md'
     },
     theme: {
+        dark: store.getters.getDarkMode,
         themes: {
             light: {
                 background: "#F5F5F5",

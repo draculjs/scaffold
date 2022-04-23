@@ -25,9 +25,7 @@ export default {
         }
     },
     actions: {
-        setDarkMode(state, val){
-            state.darkMode = val
-        },
+
         ping({commit}) {
             let begin = Date.now()
             baseProvider.ping().then(r => {
@@ -43,6 +41,9 @@ export default {
         }
     },
     mutations: {
+        setDarkMode(state, val){
+            state.darkMode = val
+        },
         addGraphqlError(state,error){
             error.key = state.graphqlErrorsCounter
             state.graphqlErrors.push(error)
