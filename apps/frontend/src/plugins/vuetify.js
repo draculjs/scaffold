@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify/lib';
 import i18n from '../i18n'
 Vue.use(Vuetify);
+import store from '../store'
 
 let colors = {
     primary: '#3F51B5',
@@ -12,6 +13,7 @@ let colors = {
 
 
 export default new Vuetify({
+    dark: store.getters.getDarkMode,
     lang: {
         t: (key, ...params) => i18n.t(key, params),
     },

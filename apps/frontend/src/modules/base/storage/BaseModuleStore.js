@@ -2,6 +2,7 @@ import baseProvider from "../providers/BaseProvider";
 
 export default {
     state: {
+        darkMode: false,
         title: "App Name",
         serverStatus: false,
         serverTime: null,
@@ -10,6 +11,9 @@ export default {
         graphqlErrorsCounter: 0
     },
     getters: {
+        getDarkMode: (state) => {
+            return state.darkMode
+        },
         getGraphqlErrors: (state) => {
             return state.graphqlErrors
         },
@@ -21,6 +25,9 @@ export default {
         }
     },
     actions: {
+        setDarkMode(state, val){
+            state.darkMode = val
+        },
         ping({commit}) {
             let begin = Date.now()
             baseProvider.ping().then(r => {

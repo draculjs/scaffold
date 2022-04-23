@@ -1,5 +1,5 @@
 <template>
-<v-switch  label="dark" hide-details  dense v-model="dark"></v-switch>
+  <v-switch :dark="dark" color="green"  label="dark" hide-details  dense v-model="dark"></v-switch>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
         return this.$vuetify.theme.dark
       },
       set(val){
+        this.$store.commit('setDarkMode',val)
         this.$vuetify.theme.dark = val
       }
     }

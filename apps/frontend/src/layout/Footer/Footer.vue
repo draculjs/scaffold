@@ -11,7 +11,7 @@
         <dark-mode></dark-mode>
       </div>
       <v-card-text>
-        {{ new Date().getFullYear() }} <strong>@PerfilIT</strong>
+        {{ new Date().getFullYear() }} <strong>@Dracul</strong>
       </v-card-text>
 
     </v-card>
