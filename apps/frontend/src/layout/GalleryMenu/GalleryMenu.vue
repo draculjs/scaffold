@@ -1,16 +1,16 @@
 <template>
   <v-container fluid>
     <v-row>
-    <template v-for="(item) in nav">
+      <template v-for="(item) in nav">
 
         <v-col cols="12"
-            v-if="item.children && isGranted(item) && !item.galleryHide"
-            :key="item.text"
-            :value="isActive(item)"
+               v-if="item.children && isGranted(item) && !item.galleryHide"
+               :key="item.text"
+               :value="isActive(item)"
         >
 
           <h4 class="text-h4">
-            {{ $t(item.text) }}
+            {{ $te(item.text) ? $t(item.text) : item.text }}
           </h4>
           <v-divider class="mb-3"></v-divider>
 
@@ -20,7 +20,7 @@
                    :key="child.text"
             >
               <menu-card
-                  :title="$t(child.text)"
+                  :title="$te(child.text) ? $t(child.text) : child.text"
                   :icon="child.icon"
                   :to="child.link"
               ></menu-card>
@@ -31,17 +31,17 @@
 
 
         <v-col cols="12" sm="4" md="4"
-            v-else-if="isGranted(item) && !item.galleryHide"
-            :key="item.text"
+               v-else-if="isGranted(item) && !item.galleryHide"
+               :key="item.text"
         >
           <menu-card
-              :title="$t(item.text)"
+              :title="$te(item.text) ? $t(item.text) : item.text"
               :icon="item.icon"
               :to="item.link"
           ></menu-card>
         </v-col>
 
-    </template>
+      </template>
     </v-row>
 
   </v-container>
