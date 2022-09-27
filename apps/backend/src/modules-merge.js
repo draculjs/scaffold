@@ -1,4 +1,6 @@
-import {mergeTypes, mergeResolvers} from 'merge-graphql-schemas';
+import { gql } from "apollo-server-express";
+import {mergeTypeDefs, mergeResolvers} from '@graphql-tools/merge';
+
 import {securityResolvers,securityTypes} from '@dracul/user-backend'
 
 import {commonTypes} from '@dracul/common-backend'
@@ -7,12 +9,20 @@ import {types as notificationTypes,resolvers as notificationResolvers} from '@dr
 import {types as settingsTypes,resolvers as settingsResolvers} from '@dracul/settings-backend'
 
 //BASE RESOLVERS
-import {resolvers as baseResolvers } from './modules/base/graphql'
+import {resolvers as baseResolvers } from './modules/base/graphql/index.js'
 //BASE TYPEDEFS
-import {types as baseTypes} from './modules/base/graphql'
+import {types as baseTypes} from './modules/base/graphql/index.js'
 
+import GraphQLUpload  from 'graphql-upload/GraphQLUpload.js'
+
+const typeUploadDefs = gql`
+  scalar Upload
+`
+
+console.log("securityTypes",securityTypes)
 
 export const resolvers = mergeResolvers([
+    {Upload: GraphQLUpload},
     baseResolvers,
     securityResolvers,
     notificationResolvers,
@@ -20,7 +30,8 @@ export const resolvers = mergeResolvers([
     settingsResolvers
 ])
 
-export const typeDefs = mergeTypes([
+export const typeDefs = mergeTypeDefs([
+    typeUploadDefs,
     commonTypes,
     baseTypes,
     securityTypes,

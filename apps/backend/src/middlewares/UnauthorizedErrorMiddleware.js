@@ -1,4 +1,5 @@
-import {DefaultLogger} from "@dracul/logger-backend";
+import DraculLogger from "@dracul/logger-backend";
+const {DefaultLogger} = DraculLogger;
 
 export const unauthorizedErrorMiddleware =  (err, req, res, next) => {
     if(err && err.name === 'UnauthorizedError'){

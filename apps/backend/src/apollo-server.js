@@ -1,6 +1,7 @@
 import {ApolloServer} from 'apollo-server-express'
-import {resolvers, typeDefs} from './modules-merge'
+import {resolvers, typeDefs} from './modules-merge.js'
 import {GqlErrorLog, GqlResponseLog} from "@dracul/logger-backend";
+
 
 //Apollo Server
 export const apolloServer = new ApolloServer({

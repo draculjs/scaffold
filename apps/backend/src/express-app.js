@@ -1,15 +1,15 @@
-
-
 require('dotenv').config();
 import express from 'express';
 
 import {jwtMiddleware, corsMiddleware, rbacMiddleware, sessionMiddleware} from '@dracul/user-backend'
-import {ResponseTimeMiddleware,RequestMiddleware} from '@dracul/logger-backend'
-import unauthorizedErrorMiddleware from "./middlewares/UnauthorizedErrorMiddleware";
-import ErrorHandlerMiddleware from "./middlewares/ErrorHandlerMiddleware";
+import DraculLogger from "@dracul/logger-backend";
+const {ResponseTimeMiddleware,RequestMiddleware} = DraculLogger;
 
-import mediaRoute from "./routes/MediaRoute";
-import statusRoute from "./routes/StatusRoute";
+import unauthorizedErrorMiddleware from "./middlewares/UnauthorizedErrorMiddleware.js";
+import ErrorHandlerMiddleware from "./middlewares/ErrorHandlerMiddleware.js ";
+
+import mediaRoute from "./routes/MediaRoute.js";
+import statusRoute from "./routes/StatusRoute.js";
 
 export const expressApp = express();
 
