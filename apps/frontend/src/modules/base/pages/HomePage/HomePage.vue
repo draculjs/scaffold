@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height>
+  <v-container fill-height >
     <gallery-menu :nav="menu"> </gallery-menu>
   </v-container>
 </template>

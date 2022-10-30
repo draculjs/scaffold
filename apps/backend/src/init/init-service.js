@@ -2,10 +2,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import {InitService} from '@dracul/user-backend'
-import {initPermissionsCustomization} from '@dracul/customize-backend'
-import {initCustomization} from './custom/initCustomization'
-import operatorRole from './custom/initOperatorRole'
-import managerRole from './custom/initManagerRole'
+import {initPermissionsCustomization, initCustomization} from '@dracul/customize-backend'
+import operatorRole from './custom/roles/initOperatorRole'
+import managerRole from './custom/roles/initManagerRole'
 
 import {
     permissions as notiPermissions
@@ -15,10 +14,11 @@ import {
     permissions as settingsPermissions
 } from '@dracul/settings-backend'
 
-import {initSettings} from './custom/initSettings'
+import {initSettings} from './custom/settings/initSettings'
 
-import modulesPermissions from './custom/modulesPermissions'
-import {testNotification} from "./custom/testNotification";
+import modulesPermissions from './custom/permissions/modulesPermissions'
+import {testNotification} from "./custom/notifications/testNotification";
+import {customizeInitialization} from "./custom/customize/customizeInitialization";
 
 const initService = async () => {
 
@@ -59,7 +59,7 @@ const initService = async () => {
     await InitService.initSupervisorUser()
     await InitService.initOperatorUser()
 
-    await initCustomization()
+    await initCustomization(customizeInitialization)
 
     await testNotification()
 }
