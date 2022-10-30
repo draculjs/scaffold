@@ -3,13 +3,13 @@
     <v-row>
       <template v-for="(item) in nav">
 
-        <v-col cols="12"
+        <v-col cols="12" class="mt-4"
                v-if="item.children && isGranted(item) && !item.galleryHide"
                :key="item.text"
                :value="isActive(item)"
         >
 
-          <h4 class="text-h4">
+          <h4 class="text-h4 font-weight-bold">
             {{ $te(item.text) ? $t(item.text) : item.text }}
           </h4>
           <v-divider class="mb-3"></v-divider>
