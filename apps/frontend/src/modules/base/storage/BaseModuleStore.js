@@ -2,7 +2,6 @@ import baseProvider from "../providers/BaseProvider";
 
 export default {
     state: {
-        darkMode: false,
         title: "App Name",
         serverStatus: false,
         serverTime: null,
@@ -11,9 +10,7 @@ export default {
         graphqlErrorsCounter: 0
     },
     getters: {
-        getDarkMode: (state) => {
-            return state.darkMode
-        },
+
         getGraphqlErrors: (state) => {
             return state.graphqlErrors
         },
@@ -41,9 +38,6 @@ export default {
         }
     },
     mutations: {
-        setDarkMode(state, val){
-            state.darkMode = val
-        },
         addGraphqlError(state,error){
             error.key = state.graphqlErrorsCounter
             state.graphqlErrors.push(error)
