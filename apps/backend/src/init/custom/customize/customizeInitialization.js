@@ -8,6 +8,7 @@ export const customizeInitialization = {
         onSecondary: '#FFFFFF',
         background: "#F5F5F5",
         appBar: "#D6D6D6",
+        onAppBar: "#3F51B5",
     },
     darkTheme: {
         primary: '#71DDC7',
@@ -16,7 +17,7 @@ export const customizeInitialization = {
         onSecondary: '#010101',
         background: "#121212",
         appBar: "#000000",
+        onAppBar: "#71DDC7",
 
     },
-
 }

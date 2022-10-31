@@ -10,7 +10,8 @@ const LIGHT_THEME = {
     secondary: '#1565C0',
     onSecondary: '#FFFFFF',
     background: '#F5F5F5',
-    appBar: '#cccccc',
+    appBar: '#3F51B5',
+    onAppBar: '#FFFFFF',
 }
 
 const DARK_THEME = {
@@ -20,6 +21,7 @@ const DARK_THEME = {
     onSecondary : "#010101",
     background : "#121212",
     appBar: '#000000',
+    onAppBar: '#71DDC7',
 }
 
 
@@ -36,6 +38,7 @@ export default new Vuetify({
             light: {
                 background:  LIGHT_THEME.background,
                 appBar:  LIGHT_THEME.appBar,
+                onAppBar:  LIGHT_THEME.onAppBar,
                 primary: LIGHT_THEME.primary,
                 secondary: LIGHT_THEME.secondary,
                 onPrimary: LIGHT_THEME.onPrimary,
@@ -44,6 +47,7 @@ export default new Vuetify({
             dark: {
                 background:  DARK_THEME.background,
                 appBar:  DARK_THEME.appBar,
+                onAppBar:  DARK_THEME.onAppBar,
                 primary: DARK_THEME.primary,
                 secondary: DARK_THEME.secondary,
                 onPrimary: DARK_THEME.onPrimary,
