@@ -14,7 +14,7 @@
         </div>
 
         <v-spacer></v-spacer>
-        <dark-mode show-label></dark-mode>
+        <dark-mode ></dark-mode>
       </v-card-actions>
 
     </v-card>
