@@ -11,7 +11,7 @@ else
     cp pm2.config.example.js $FILE
 fi
 
-##BACKUPWEB
+##BACKUP WEB
 cd dist
 mv web webtemp
 cd ..
@@ -38,8 +38,13 @@ if test -f "$BKP"; then
     echo "BKP exists. Moving..."
 fi
 
-##BACKUPWEB
+##RESTORE WEB
+rm -r web
 mv webtemp web
+
+# MEDIA
+cd ..
+cp -r apps/backend/media dist/
 
 
 echo "BUILD BACK ENDED"
