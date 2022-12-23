@@ -27,10 +27,13 @@ npm install
 echo "Frontend buildpm2..."
 npm run buildpm2
 
+#RUNPM2
+cd ../..
+cp runpm2.sh dist/runpm2.sh
 
 #DIST
 echo "PREPARING dist"
-cd ../../dist
+cd dist
 npm install --only=production
 
 #PM2 CONFIG DIST
