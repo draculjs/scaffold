@@ -4,12 +4,17 @@ import expressApp from './express-app'
 import apolloServer from './apollo-server'
 import initService from "./init/init-service";
 import defaultRoute from "./routes/DefaultRoute";
+
 const mongoConnect = require('./mongo-db')
+import {graphqlUploadExpress} from "graphql-upload";
 
 DefaultLogger.info("Starting APP")
 
 //Connect to MongoDb
 mongoConnect()
+
+//Midleware fix fs.capacitor
+expressApp.use(graphqlUploadExpress({maxFileSize: 1000000000, maxFiles: 10}));
 
 //Link ApolloServer with ExpressApp
 apolloServer.applyMiddleware({app: expressApp})
@@ -22,16 +27,16 @@ initService()
     //After initialize start to listen request
     .then(() => {
 
-    const PORT = process.env.APP_PORT ? process.env.APP_PORT : "5000"
-    const URL = process.env.APP_API_URL ? process.env.APP_API_URL : "http://localhost" + PORT
+        const PORT = process.env.APP_PORT ? process.env.APP_PORT : "5000"
+        const URL = process.env.APP_API_URL ? process.env.APP_API_URL : "http://localhost" + PORT
 
-    const server = expressApp.listen(PORT, () => {
-        DefaultLogger.info(`Web Server started: ${URL}`)
-        DefaultLogger.info(`Graphql Server ready: ${URL}${apolloServer.graphqlPath}`)
-    })
-    server.setTimeout(420000);
+        const server = expressApp.listen(PORT, () => {
+            DefaultLogger.info(`Web Server started: ${URL}`)
+            DefaultLogger.info(`Graphql Server ready: ${URL}${apolloServer.graphqlPath}`)
+        })
+        server.setTimeout(420000);
 
-}).catch(err => {
+    }).catch(err => {
     DefaultLogger.error(err.message, err)
 })
 
