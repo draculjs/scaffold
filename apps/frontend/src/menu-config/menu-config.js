@@ -43,6 +43,12 @@ export default [
                 panel: false,
                 permission: 'CUSTOMIZATION_SHOW'
             },
+            {
+                icon: 'settings',
+                text: 'menu.settings',
+                link: {name: "SettingsPage"},
+                permission: 'SETTINGS_UPDATE'
+            },
         ]
     },
 /*    {
