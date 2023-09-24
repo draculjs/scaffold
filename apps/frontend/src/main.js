@@ -35,6 +35,8 @@ store.dispatch('loadCustomizations')
       i18n.locale = r.language
     })
 
+store.dispatch('loadSettings')
+
 
 new Vue({
   vuetify,
