@@ -14,11 +14,11 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@dracul/common-frontend": "^1.24.0",
-    "@dracul/customize-frontend": "^1.24.2",
-    "@dracul/notification-frontend": "^1.24.0",
-    "@dracul/settings-frontend": "^1.24.0",
-    "@dracul/user-frontend": "^1.24.2",
+    "@dracul/common-frontend": "^1.35.1",
+    "@dracul/customize-frontend": "^1.35.1",
+    "@dracul/notification-frontend": "^1.35.1",
+    "@dracul/settings-frontend": "^1.35.1",
+    "@dracul/user-frontend": "^1.35.1",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
@@ -70,7 +70,7 @@
     "vue-cli-plugin-vuetify": "~2.0.5",
     "vue-template-compiler": "^2.7.15",
     "vuetify-loader": "^1.9.2",
-    "webpack": "^4.46.0"
+    "webpack": "^4.47.0"
   },
   "eslintConfig": {
     "root": true,
